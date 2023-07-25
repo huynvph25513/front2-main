@@ -40,5 +40,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
