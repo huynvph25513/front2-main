@@ -1,23 +1,16 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
-import {
-  addProduct,
-  deleteProduct,
-  fetchProducts,
-  updateProduct,
-} from "@/actions[draft]/product";
-import { Dispatch } from "redux";
+import { getProducts } from "@/actions/product";
+import { useAppDispatch, useAppSelector } from "@/app/hook";
 
 const ProductList = () => {
-  const dispatch: Dispatch<any> = useDispatch();
-  const { products, isLoading, error } = useSelector(
+  const dispatch = useAppDispatch();
+  const { products, isLoading, error } = useAppSelector(
     (state: any) => state.products
   );
   useEffect(() => {
     // default dispatch chỉ nhận 1 plain object
     // dispatch({type: "abc"})
-    dispatch(fetchProducts());
+    dispatch(getProducts());
   }, [dispatch]);
 
   if (isLoading) return <div>Loading...</div>;
@@ -36,9 +29,7 @@ const ProductList = () => {
           </button>
         </div>
       ))}
-      <button onClick={() => dispatch(addProduct({ name: "Product C" }))}>
-        Add
-      </button>
+      {/* <button onClick={() => dispatch(addProduct({ name: "Product C" }))}>Add</button>
       <button
         onClick={() =>
           dispatch(updateProduct({ name: "Product C updated", id: 3 }))
@@ -46,7 +37,7 @@ const ProductList = () => {
       >
         Update
       </button>
-      <button onClick={() => dispatch(deleteProduct(3))}>Delete</button>
+      <button onClick={() => dispatch(deleteProduct(3))}>Delete</button> */}
     </div>
   );
 };
